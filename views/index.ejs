@@ -1,0 +1,33 @@
+<html>
+    <title>Restaurant page</title>
+    <body>
+    <h1>Hello!</h1><br>
+    <h3> You are now loggin in as user: <%= userName %></h3>
+    <a href="/logout"> <button>Logout</button></a><br><br><br><br><br>
+        <% if ( Restaurant.length > 0) { %>
+            <ul>
+            <% for (var r of Restaurant) { %>
+
+            <li>Restaurant ID: <%= r.id %>   <a href="/details?_id=<%= r._id %>" >Show details</a>
+
+                <% if ( r.owner == userName) { %>
+                    <a href="/edit?_id=<%= r._id %>" >Edit restaurant</a>
+                    <a href="/delete?_id=<%= r._id %>" >Delete restaurant</a>
+                <% } %>
+
+                <a href="/rating?_id=<%= r._id %>&id=<%= r.id %>" >Rate it</a>
+            
+            </li>
+
+            <% } %>
+        </ul>
+            
+            <% } else { %>
+            No documents available yet!<br><br>
+
+            You can create a new Restaurant for others to view<br><br>
+            <% } %>
+        <a href="/create?username=<%=userName%>"> <button>Create</button></a>
+        
+    </body>
+</html>
